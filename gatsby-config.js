@@ -63,7 +63,3 @@ module.exports = client.getEntries().then(entries => {
     plugins,
   };
 });
-
-module.exports = {
-  pathPrefix: '/denisvieira05.github.io',
-};
