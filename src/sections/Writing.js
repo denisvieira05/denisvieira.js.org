@@ -95,7 +95,7 @@ const parsePost = author => postFromGraphql => {
 
 const MorePosts = ({ username, name, number }) => (
   <Card
-    onClick={() => window.open(`${MEDIUM_URL}/${username}/`, '_blank')}
+    onClick={() => window.open(`${MEDIUM_URL}/@${username}/`, '_blank')}
     p={4}
   >
     <Flex
@@ -111,9 +111,9 @@ const MorePosts = ({ username, name, number }) => (
           </span>
         </EllipsisHeading>
         <Heading lineHeight={1.5}>
-          It seems that
-          <Text color="secondary">{name}</Text>
-          {`has published ${number} more posts!`}
+          See More ..
+          {/* <Text color="secondary">{name}</Text> */}
+          {/* {`has published ${number} more posts!`} */}
         </Heading>
       </Box>
       <Heading color="primary" mt={5} textAlign="right">
@@ -167,16 +167,18 @@ const Writing = () => (
     `}
     render={({ allMediumPost, site, author }) => {
       const posts = edgeToArray(allMediumPost).map(parsePost(author));
-
+      console.log('allMediumPost.totalCount', allMediumPost.totalCount);
+      console.log('posts.length', posts.length);
+      console.log('author', author);
       const diffAmountArticles = allMediumPost.totalCount - posts.length;
-      if (diffAmountArticles > 0) {
-        posts.push({
-          ...author,
-          id: 'more-field',
-          number: diffAmountArticles,
-          Component: MorePosts,
-        });
-      }
+      // if (diffAmountArticles > 0) {
+      posts.push({
+        ...author,
+        id: 'more-field',
+        number: diffAmountArticles,
+        Component: MorePosts,
+      });
+      // }
 
       const { isMediumUserDefined } = site.siteMetadata;
 

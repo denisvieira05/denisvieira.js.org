@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-starter-mate",
+  "name": "denis-vieira-website",
   "version": "2.5.1",
   "description": "Gatsby v2 starter to create a top notch portfolio!",
   "main": "index.js",
@@ -15,21 +15,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EmaSuriano/gatsby-starter-mate.git"
+    "url": "git@github.com:denisvieira05/denisvieira05.github.io.git"
   },
   "keywords": [
-    "gatsby",
-    "starter",
+    "denis vieira",
+    "denis",
     "contentful",
     "PWA",
-    "portfolio"
+    "portfolio",
+    "software developer",
+    "software",
+    "development"
   ],
-  "author": "Ema Suriano",
+  "author": "Denis Vieira",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EmaSuriano/gatsby-starter-mate/issues"
+    "url": "https://github.com/denisvieira05/denisvieira05.github.io/issues"
   },
-  "homepage": "https://github.com/EmaSuriano/gatsby-starter-mate#readme",
+  "homepage": "https://denisvieira.js.org/",
   "dependencies": {
     "contentful": "^7.0.3",
     "dotenv": "^7.0.0",

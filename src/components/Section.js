@@ -5,6 +5,7 @@ import { Heading } from 'rebass';
 import PropTypes from 'prop-types';
 import Slide from 'react-reveal/Slide';
 import LinkAnimated from './LinkAnimated';
+import FontAwesomeIcon from 'react-fontawesome';
 
 const SectionContainer = styled.div`
   min-height: 100vh;
@@ -34,11 +35,16 @@ Container.propTypes = {
   Background: PropTypes.func,
 };
 
-const Header = ({ name, icon = '', label = '' }) => (
+const Header = ({ name, icon = '', label = '', fontAwesomeIcon }) => (
   <Slide left>
     <Heading color="secondaryDark" mb={4}>
       <LinkAnimated selected>
         {name}
+        {fontAwesomeIcon && (
+          <span role="img" aria-label={label} style={{ marginLeft: '10px' }}>
+            <FontAwesomeIcon name={fontAwesomeIcon} />
+          </span>
+        )}
         {icon && (
           <span role="img" aria-label={label} style={{ marginLeft: '10px' }}>
             {icon}
