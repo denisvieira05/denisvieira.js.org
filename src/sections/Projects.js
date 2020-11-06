@@ -14,31 +14,29 @@ import Hide from '../components/Hide';
 const Background = () => (
   <div>
     <Triangle
-      color="secondaryLight"
-      height={['80vh', '80vh']}
-      width={['100vw', '100vw']}
-      invertX
+      color="backgroundDark"
+      height={['35vh', '80vh']}
+      width={['95vw', '60vw']}
     />
 
     <Triangle
-      color="background"
-      height={['50vh', '20vh']}
-      width={['50vw', '50vw']}
-      invertX
+      color="secondary"
+      height={['38vh', '80vh']}
+      width={['50vw', '35vw']}
     />
 
     <Triangle
       color="primaryDark"
-      height={['25vh', '40vh']}
+      height={['25vh', '35vh']}
       width={['75vw', '60vw']}
       invertX
-      invertY
     />
 
     <Triangle
       color="backgroundDark"
-      height={['25vh', '20vh']}
+      height={['20vh', '20vh']}
       width={['100vw', '100vw']}
+      invertX
       invertY
     />
   </div>
