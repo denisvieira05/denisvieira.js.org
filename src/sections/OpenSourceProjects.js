@@ -173,7 +173,7 @@ Project.propTypes = {
 };
 
 const OpenSourceProjects = () => (
-  <Section.Container id="open Source" Background={Background}>
+  <Section.Container id="opensource" Background={Background}>
     <Section.Header
       name="Open Source"
       fontAwesomeIcon="github"
