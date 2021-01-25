@@ -118,11 +118,7 @@ const links = [
 ];
 
 const navLinks = links.map(({ name, value }) => (
-  <RouteLink
-    key={name}
-    goToRoute={value.path}
-    selected={window.location.pathname == value.path ? true : false}
-  >
+  <RouteLink key={name} goToRoute={value.path}>
     {name}
   </RouteLink>
 ));
