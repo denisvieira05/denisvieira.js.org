@@ -16,30 +16,23 @@ const MEDIUM_URL = 'https://medium.com';
 const Background = () => (
   <div>
     <Triangle
-      color="backgroundDark"
-      height={['35vh', '80vh']}
-      width={['95vw', '60vw']}
-    />
-
-    <Triangle
-      color="secondary"
-      height={['38vh', '80vh']}
-      width={['50vw', '35vw']}
+      color="secondaryLight"
+      height={['50vh', '20vh']}
+      width={['50vw', '50vw']}
+      invertY
     />
 
     <Triangle
       color="primaryDark"
-      height={['25vh', '35vh']}
-      width={['75vw', '60vw']}
+      height={['20vh', '40vh']}
+      width={['75vw', '70vw']}
       invertX
     />
 
     <Triangle
       color="backgroundDark"
-      height={['20vh', '20vh']}
+      height={['25vh', '20vh']}
       width={['100vw', '100vw']}
-      invertX
-      invertY
     />
   </div>
 );
@@ -134,12 +127,12 @@ MorePosts.propTypes = {
 
 const edgeToArray = data => data.edges.map(edge => edge.node);
 
-const Writing = () => (
+const Talks = () => (
   <StaticQuery
     query={graphql`
-      query WritingQuery {
+      query TalksQuery {
         contentfulAbout {
-          writingTech {
+          talks {
             title
             description
             linkBrazilian
@@ -158,11 +151,11 @@ const Writing = () => (
     `}
     render={({ contentfulAbout }) => {
       console.log(contentfulAbout)
-      const posts = contentfulAbout.writingTech.map(parsePost("denisvieira"));
+      const posts = contentfulAbout.talks.map(parsePost("denisvieira"));
 
       return (
-        <Section.Container id="writing" Background={Background}>
-          <Section.Header name="Writing" icon="✍️" label="writing" />
+        <Section.Container id="talks" Background={Background}>
+          <Section.Header name="Talks" icon="✍️" label="talks" />
           <CardContainer minWidth="300px">
             {posts.map(({ Component, ...rest }) => (
               <Fade bottom key={rest.id}>
@@ -176,4 +169,4 @@ const Writing = () => (
   />
 );
 
-export default Writing;
+export default Talks;

@@ -14,29 +14,26 @@ import Hide from '../components/Hide';
 const Background = () => (
   <div>
     <Triangle
-      color="background"
+      color="secondaryLight"
       height={['50vh', '20vh']}
       width={['50vw', '50vw']}
-      invertX
+      invertY
     />
 
     <Triangle
       color="primaryDark"
-      height={['25vh', '40vh']}
-      width={['75vw', '60vw']}
+      height={['20vh', '40vh']}
+      width={['75vw', '70vw']}
       invertX
-      invertY
     />
 
     <Triangle
       color="backgroundDark"
       height={['25vh', '20vh']}
       width={['100vw', '100vw']}
-      invertY
     />
   </div>
 );
-
 const CARD_HEIGHT = '200px';
 
 const MEDIA_QUERY_SMALL = '@media (max-width: 400px)';
@@ -169,7 +166,7 @@ Project.propTypes = {
 };
 
 const OpenSourceProjects = () => (
-  <Section.Container id="open Source" Background={Background}>
+  <Section.Container id="opensource" Background={Background}>
     <Section.Header
       name="Open Source"
       fontAwesomeIcon="github"

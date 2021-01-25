@@ -81,16 +81,19 @@ Post.propTypes = {
 };
 
 const parsePost = author => postFromGraphql => {
-  const { title, description, publishedDate, coverImage,linkBrazilian } = postFromGraphql;
+  const { id, uniqueSlug, createdAt, title, virtuals } = postFromGraphql;
+  const image =
+    virtuals.previewImage.imageId &&
+    `${MEDIUM_CDN}/${virtuals.previewImage.imageId}`;
 
   return {
-    id: "x-id",
+    id,
     title,
-    time: 3,
-    date: publishedDate,
-    text: description,
-    image: coverImage.image.src,
-    url: linkBrazilian,
+    time: virtuals.readingTime,
+    date: createdAt,
+    text: virtuals.subtitle,
+    image,
+    url: `${MEDIUM_URL}/${author.username}/${uniqueSlug}`,
     Component: Post,
   };
 };
@@ -137,40 +140,66 @@ const edgeToArray = data => data.edges.map(edge => edge.node);
 const Writing = () => (
   <StaticQuery
     query={graphql`
-      query WritingQuery {
-        contentfulAbout {
-          writingTech {
-            title
-            description
-            linkBrazilian
-            linkEnglish
-            readMinutes
-            coverImage {
+      query MediumPostQuery {
+        site {
+          siteMetadata {
+            isMediumUserDefined
+          }
+        }
+        allMediumPost(limit: 7, sort: { fields: createdAt, order: DESC }) {
+          totalCount
+          edges {
+            node {
+              id
+              uniqueSlug
               title
-              image: resize(width: 200, quality: 100) {
-                src
+              createdAt(formatString: "MMM YYYY")
+              virtuals {
+                subtitle
+                readingTime
+                previewImage {
+                  imageId
+                }
               }
             }
-            publishedDate(formatString: "YYYY")
           }
+        }
+        author: mediumUser {
+          username
+          name
         }
       }
     `}
-    render={({ contentfulAbout }) => {
-      console.log(contentfulAbout)
-      const posts = contentfulAbout.writingTech.map(parsePost("denisvieira"));
+    render={({ allMediumPost, site, author }) => {
+      const posts = edgeToArray(allMediumPost).map(parsePost(author));
+      console.log('allMediumPost.totalCount', allMediumPost.totalCount);
+      console.log('posts.length', posts.length);
+      console.log('author', author);
+      const diffAmountArticles = allMediumPost.totalCount - posts.length;
+      // if (diffAmountArticles > 0) {
+      posts.push({
+        ...author,
+        id: 'more-field',
+        number: diffAmountArticles,
+        Component: MorePosts,
+      });
+      // }
+
+      const { isMediumUserDefined } = site.siteMetadata;
 
       return (
-        <Section.Container id="writing" Background={Background}>
-          <Section.Header name="Writing" icon="✍️" label="writing" />
-          <CardContainer minWidth="300px">
-            {posts.map(({ Component, ...rest }) => (
-              <Fade bottom key={rest.id}>
-                <Component {...rest} key={rest.id} />
-              </Fade>
-            ))}
-          </CardContainer>
-        </Section.Container>
+        isMediumUserDefined && (
+          <Section.Container id="writing" Background={Background}>
+            <Section.Header name="Writing" icon="✍️" label="writing" />
+            <CardContainer minWidth="300px">
+              {posts.map(({ Component, ...rest }) => (
+                <Fade bottom key={rest.id}>
+                  <Component {...rest} key={rest.id} />
+                </Fade>
+              ))}
+            </CardContainer>
+          </Section.Container>
+        )
       );
     }}
   />
