@@ -8,7 +8,7 @@ import RouteLink from './RouteLink';
 import Logo from './Logo/lislogo.png';
 import BrazilImg from './Logo/brazil.svg';
 import enImg from './Logo/english.svg';
-import { Link } from "gatsby"
+import { Link } from 'gatsby';
 
 const capitalize = s => s && s[0].toUpperCase() + s.slice(1);
 
@@ -44,7 +44,6 @@ const HeaderContainer = styled(Headroom)`
 //     { links: [], home: null },
 //   );
 
-
 const homeLink = (
   <Link to={'/'}>
     <Image
@@ -58,14 +57,18 @@ const homeLink = (
   </Link>
 );
 
-
 const externalLink = (title, link) => (
   <LinkRebass
     href={link}
     target="_blank"
-    style={{ textDecoration: 'none', color: 'white', marginLeft: '16px', fontSize: '20px'}}
-    >
-      {title}
+    style={{
+      textDecoration: 'none',
+      color: 'white',
+      marginLeft: '16px',
+      fontSize: '20px',
+    }}
+  >
+    {title}
   </LinkRebass>
 );
 
@@ -76,11 +79,10 @@ const portugueseLink = (
     alt="Brazilian Language"
     style={{
       cursor: 'pointer',
-      marginLeft: '15px'
+      marginLeft: '15px',
     }}
   />
 );
-
 
 const englishLink = (
   <Image
@@ -89,7 +91,7 @@ const englishLink = (
     alt="English Language"
     style={{
       cursor: 'pointer',
-      marginLeft: '60px'
+      marginLeft: '60px',
     }}
   />
 );
@@ -99,36 +101,41 @@ const links = [
     name: 'Sobre mim',
     value: {
       path: '/',
-    }
+    },
   },
   {
     name: 'Blog',
     value: {
       path: '/blog',
-    }
+    },
   },
   {
     name: 'Projetos',
     value: {
       path: '/projects',
-    }
+    },
   },
-]
-
+];
 
 const navLinks = links.map(({ name, value }) => (
   <RouteLink
     key={name}
     goToRoute={value.path}
-    selected={location.pathname == value.path ? true : false }
+    selected={location.pathname == value.path ? true : false}
   >
     {name}
   </RouteLink>
-))
+));
 
 const mentoriaNavLink = externalLink(
-  "Mentoria", "https://www.notion.so/denisvieira/MENTORIA-CARREIRA-PROGRAMADOR-TIPS-AND-TRICKS-PUBLIC-3e1e4e19cc1740028e7102e55984ef18")
-const otherServicesNavLink = externalLink("Outros Serviços","https://www.notion.so/denisvieira/OUTROS-SERVI-OS-61aa2098f15b47de90add49e54c65c97")
+  'Mentoria',
+  'https://www.notion.so/denisvieira/MENTORIA-CARREIRA-PROGRAMADOR-TIPS-AND-TRICKS-PUBLIC-3e1e4e19cc1740028e7102e55984ef18',
+);
+const otherServicesNavLink = externalLink(
+  'Outros Serviços',
+  'https://www.notion.so/denisvieira/OUTROS-SERVI-OS-61aa2098f15b47de90add49e54c65c97',
+);
+const shortcutsNavLink = externalLink('Atalhos', 'https://bit.ly/links-denis');
 
 const Header = () => (
   <HeaderContainer>
@@ -141,9 +148,10 @@ const Header = () => (
       >
         <Fragment>
           {homeLink}
-          <Flex mr={[0, 3, 5, 7, 9]}>{navLinks} {mentoriaNavLink} {otherServicesNavLink}
-          
-          {/* {englishLink} {portugueseLink} */}
+          <Flex mr={[0, 3, 5, 7, 9]}>
+            {navLinks} {mentoriaNavLink} {otherServicesNavLink}{' '}
+            {shortcutsNavLink}
+            {/* {englishLink} {portugueseLink} */}
           </Flex>
         </Fragment>
       </Flex>
