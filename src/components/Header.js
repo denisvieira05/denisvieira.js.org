@@ -121,7 +121,7 @@ const navLinks = links.map(({ name, value }) => (
   <RouteLink
     key={name}
     goToRoute={value.path}
-    selected={location.pathname == value.path ? true : false}
+    selected={window.location.pathname == value.path ? true : false}
   >
     {name}
   </RouteLink>
