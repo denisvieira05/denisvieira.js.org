@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Headroom from 'react-headroom';
-import { Flex, Image } from 'rebass';
+import { Flex, Image, Link as LinkRebass } from 'rebass';
 import styled from 'styled-components';
 import { SectionLinks } from 'react-scroll-section';
 import Fade from 'react-reveal/Fade';
@@ -59,6 +59,16 @@ const homeLink = (
 );
 
 
+const externalLink = (title, link) => (
+  <LinkRebass
+    href={link}
+    target="_blank"
+    style={{ textDecoration: 'none', color: 'white', marginLeft: '16px', fontSize: '20px'}}
+    >
+      {title}
+  </LinkRebass>
+);
+
 const portugueseLink = (
   <Image
     src={BrazilImg}
@@ -94,7 +104,7 @@ const links = [
   {
     name: 'Blog',
     value: {
-      path: '/writing',
+      path: '/blog',
     }
   },
   {
@@ -103,13 +113,8 @@ const links = [
       path: '/projects',
     }
   },
-  {
-    name: 'Open Source',
-    value: {
-      path: '/opensource',
-    }
-  },
 ]
+
 
 const navLinks = links.map(({ name, value }) => (
   <RouteLink
@@ -120,6 +125,10 @@ const navLinks = links.map(({ name, value }) => (
     {name}
   </RouteLink>
 ))
+
+const mentoriaNavLink = externalLink(
+  "Mentoria", "https://www.notion.so/denisvieira/MENTORIA-CARREIRA-PROGRAMADOR-TIPS-AND-TRICKS-PUBLIC-3e1e4e19cc1740028e7102e55984ef18")
+const otherServicesNavLink = externalLink("Outros Serviços","https://www.notion.so/denisvieira/OUTROS-SERVI-OS-61aa2098f15b47de90add49e54c65c97")
 
 const Header = () => (
   <HeaderContainer>
@@ -132,7 +141,10 @@ const Header = () => (
       >
         <Fragment>
           {homeLink}
-          <Flex mr={[0, 3, 5, 7, 9]}>{navLinks} {englishLink} {portugueseLink}</Flex>
+          <Flex mr={[0, 3, 5, 7, 9]}>{navLinks} {mentoriaNavLink} {otherServicesNavLink}
+          
+          {/* {englishLink} {portugueseLink} */}
+          </Flex>
         </Fragment>
       </Flex>
     </Fade>
